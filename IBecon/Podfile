@@ -1,0 +1,5 @@
+source 'https://github.com/CocoaPods/Specs.git'
+source 'git@github.com:okta/okta-ios-pods.git'
+
+
+pod "AFNetworking", "~>2.5"
