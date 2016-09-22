@@ -85,7 +85,7 @@
                                     initWithProximityUUID:proximityUUID
                                     major:[beconRegion.major intValue]
                                     minor:[beconRegion.minor intValue]
-                                    identifier:beconRegion.proximityUUID];
+                                    identifier:beconRegion.location];
     
     // Register the beacon region with the location manager.
     [self.locManager startMonitoringForRegion:beaconRegion];
@@ -99,7 +99,8 @@
 
 
 - (void) locationManager:(CLLocationManager *)manager didStartMonitoringForRegion:(CLRegion *)region {
-    //[self.locManager requestStateForRegion:self.beaconRegion];
+    NSLog(@"YYYYYstart Monitoring");
+
     [self.locManager requestStateForRegion:region];
     
 }
@@ -134,7 +135,7 @@
     NSString *proximityUUID = [beaconRegion.proximityUUID UUIDString];
     NSString *eventTypeString = (eventType == BeconEventEnter) ? @"enter" : @"exit";
 
-    NSLog(@"YYYYYYYYYYYYYYYYYPosting becon event for user:%@, proximityUUID:%@, eventType: %@", userName, proximityUUID, eventTypeString);
+    NSLog(@"YYYYYYYYYYYYYYYYYPosting becon event for user:%@, proximityUUID:%@, eventType: %@, major:%@, minor:%@", userName, proximityUUID, eventTypeString, beaconRegion.major, beaconRegion.minor);
     
     [IBCOktaAPI reportBeconEventForUser:userName bluetoothAddresss:nil proximityUUID:proximityUUID major:beaconRegion.major minor:beaconRegion.minor type:eventType];
 }

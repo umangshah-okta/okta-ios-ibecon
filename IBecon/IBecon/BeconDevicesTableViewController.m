@@ -30,6 +30,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self.navigationItem setHidesBackButton:YES];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(beconsUpdated:) name:@"BeconsUpdated" object:nil];
     
     [[IBCLocationManager locationManager] getUpdatedBeconsListAndStartMonitoring];
@@ -72,7 +73,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     BeconTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"beconDetails" forIndexPath:indexPath];
     BeconRegion *region = self.becons[indexPath.row];
-    cell.location.text = region.proximityUUID;
+    cell.location.text = region.location;
     cell.uuid.text = region.proximityUUID;
     cell.major.text = [region.major stringValue];
     cell.minor.text = [region.minor stringValue];

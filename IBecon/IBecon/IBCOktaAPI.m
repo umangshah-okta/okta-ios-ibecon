@@ -12,23 +12,33 @@
 @implementation IBCOktaAPI
 + (BeconRegions *)getKnownBeconsForUser:(NSString *)userName {
     
-    /*OLPAPIResonse *response = [OLPAPIProcessor getWithURLPath:@"/api/internal/v1/ibeacon/info"];
+    OLPAPIResonse *response = [OLPAPIProcessor getWithURLPath:@"/api/internal/v1/ibeacon/info"];
     BeconRegions *beconRegions = [[BeconRegions alloc] initWithAPIResonse:response];
-    return beconRegions;*/
+    return beconRegions;
     
     
-    BeconRegions *beconRegions = [[BeconRegions alloc] init];
+    /*BeconRegions *beconRegions = [[BeconRegions alloc] init];
     NSMutableArray<BeconRegion *> *regions = [NSMutableArray array];
     BeconRegion *region = [[BeconRegion alloc] init];
     
     region.proximityUUID = @"2B162531-FD29-4758-85B4-555A6DFF00FF";
     region.major = @(54687);
     region.minor = @(2592);
+    region.location = @"War room";
+    [regions addObject:region];*/
     
-    [regions addObject:region];
+    /*BeconRegions *beconRegions = [[BeconRegions alloc] init];
+    NSMutableArray<BeconRegion *> *regions = [NSMutableArray array];
+    BeconRegion *region = [[BeconRegion alloc] init];
     
-    beconRegions.regions = regions;
-    return beconRegions;
+    region.proximityUUID = @"74278BDA-B644-4520-8F0C-720EAF059935";
+    region.major = @(10001);
+    region.minor = @(19641);
+    region.location = @"War room2";
+    [regions addObject:region];*/
+     
+    /*beconRegions.regions = regions;
+    return beconRegions;*/
 }
 
 
