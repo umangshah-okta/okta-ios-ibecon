@@ -7,6 +7,8 @@
 //
 
 #import "AppDelegate.h"
+#import "IBCLocationManager.h"
+#import "IBCLoginManager.h"
 
 @interface AppDelegate ()
 
@@ -16,9 +18,14 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
+    if ([launchOptions objectForKey:UIApplicationLaunchOptionsLocationKey]) {
+        if ([[IBCLoginManager user] logInWithCachedCreds]) { //if login success
+            [[IBCLocationManager locationManager] getUpdatedBeconsListAndStartMonitoring];
+        }
+    }
     return YES;
 }
+
 
 
 - (void)applicationWillResignActive:(UIApplication *)application {

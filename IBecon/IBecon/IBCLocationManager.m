@@ -8,10 +8,12 @@
 
 #import "IBCLocationManager.h"
 #import <CoreLocation/CoreLocation.h>
+#import "IBCOktaAPI.h"
 
 @interface IBCLocationManager () <CLLocationManagerDelegate>
 @property (nonatomic, strong) CLLocationManager *locManager;
-@property (nonatomic, strong) CLBeaconRegion *beaconRegion;
+@property (nonatomic, strong) NSMutableDictionary *beaconRegions;
+@property (strong, nonatomic) dispatch_queue_t locationManagerQueue;
 @end
 
 @implementation IBCLocationManager
@@ -31,6 +33,7 @@
     if (self) {
         self.locManager = [[CLLocationManager alloc] init];
         self.locManager.delegate = self;
+        self.locationManagerQueue = dispatch_queue_create("IBCLocationManager", DISPATCH_QUEUE_SERIAL);
     }
     return self;
 }
@@ -39,51 +42,67 @@
     [self.locManager requestAlwaysAuthorization];
 }
 
-- (void)registerBeaconRegionWithUUID:(NSString *)UUID andIdentifier:(NSString*)identifier {
+- (void)getUpdatedBeconsListAndStartMonitoring {
+    dispatch_async(self.locationManagerQueue, ^{
+        
+    });
 
+}
+
+- (void)registerBeaconRegion:(BeconRegion *)beconRegion {
+
+    if (self.beaconRegions[beconRegion.proximityUUID] == nil) {
+        return;
+    }
+    
     NSUUID *proximityUUID = [[NSUUID alloc]
-                             initWithUUIDString:UUID];
+                             initWithUUIDString:beconRegion.proximityUUID];
     
     
     // Create the beacon region to be monitored.
-    self.beaconRegion = [[CLBeaconRegion alloc]
+    CLBeaconRegion *beaconRegion = [[CLBeaconRegion alloc]
                                     initWithProximityUUID:proximityUUID
-                                    major:54687
-                                    minor:2592
-                                    identifier:identifier];
+                                    major:beconRegion.major
+                                    minor:beconRegion.minor
+                                    identifier:beconRegion.proximityUUID];
     
     // Register the beacon region with the location manager.
-    [self.locManager startMonitoringForRegion:self.beaconRegion];
+    [self.locManager startMonitoringForRegion:beaconRegion];
+    self.beaconRegions[beconRegion.proximityUUID] = beaconRegion;
 }
+
+
 
 - (void) locationManager:(CLLocationManager *)manager didStartMonitoringForRegion:(CLRegion *)region {
-    [self.locManager requestStateForRegion:self.beaconRegion];
+    //[self.locManager requestStateForRegion:self.beaconRegion];
+    [self.locManager requestStateForRegion:region];
+    
 }
 
--(void)locationManager:(CLLocationManager *)manager didDetermineState:(CLRegionState)state forRegion:(CLRegion *)region
-{
-    if (state == CLRegionStateInside)
-    {
-        //Start Ranging
-        //[manager startRangingBeaconsInRegion:self.beaconRegion];
-    }
-    else
-    {
-        //Stop Ranging here
-    }
+
+- (void)locationManager:(CLLocationManager *)manager didDetermineState:(CLRegionState)state forRegion:(CLRegion *)region {
+    dispatch_async(self.locationManagerQueue, ^{
+        if (state == CLRegionStateInside) {
+            // report inside
+        } else {
+            // report outside
+        }
+    });
 }
 
 
 - (void)locationManager:(CLLocationManager *)manager didEnterRegion:(CLRegion *)region {
-
+    dispatch_async(self.locationManagerQueue, ^{
+        
+    });
 }
 
 -(void)locationManager:(CLLocationManager *)manager didExitRegion:(CLRegion *)region {
-
+    dispatch_async(self.locationManagerQueue, ^{
+        
+    });
 }
 
--(void)locationManager:(CLLocationManager *)manager didRangeBeacons:(NSArray *)beacons inRegion:(CLBeaconRegion *)region {
-    
-}
+
 
 @end

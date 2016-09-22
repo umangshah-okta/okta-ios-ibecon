@@ -11,5 +11,5 @@
 @interface IBCLocationManager : NSObject
 + (IBCLocationManager *)locationManager;
 - (void)requestLocationAccess;
-- (void)registerBeaconRegionWithUUID:(NSString *)proximityUUID andIdentifier:(NSString *)identifier;
+- (void)getUpdatedBeconsListAndStartMonitoring;
 @end

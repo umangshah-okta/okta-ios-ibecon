@@ -18,7 +18,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [[IBCLocationManager locationManager] registerBeaconRegionWithUUID:@"2B162531-FD29-4758-85B4-555A6DFF00FF" andIdentifier:@"com.okta.hack"];
+    [[IBCLocationManager locationManager] getUpdatedBeconsListAndStartMonitoring];
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
