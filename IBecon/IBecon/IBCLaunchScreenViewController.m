@@ -7,6 +7,7 @@
 //
 
 #import "IBCLaunchScreenViewController.h"
+#import "IBCUserManager.h"
 
 @interface IBCLaunchScreenViewController ()
 
@@ -16,22 +17,34 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    // call API to get list of devices 
+    
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [self.navigationController setNavigationBarHidden:YES animated:animated];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    if (YES || [[IBCUserManager user] loggedInWithCachedCreds]) {
+        [self performSegueWithIdentifier:@"loginSucess" sender:self];
+    } else {
+        [self performSegueWithIdentifier:@"loginUser" sender:self];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (IBAction)unwindMDMConfigModalViewControllers:(UIStoryboardSegue *)segue {
+    if ([segue.identifier isEqual:@"unwindFromUserAgreement"]) {
+        
+    }
 }
-*/
+
+
+
 
 @end

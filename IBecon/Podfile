@@ -3,3 +3,5 @@ source 'git@github.com:okta/okta-ios-pods.git'
 
 
 pod "AFNetworking", "~>2.5"
+pod "okta-ios-utils", "~>1.1.0"
+
