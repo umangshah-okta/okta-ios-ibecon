@@ -7,8 +7,19 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "BeconRegion.h"
+#import "BeconRegions.h"
+#import "BeconEventPost.h"
+
+typedef NS_ENUM(NSInteger, BeconEvent)
+{
+    BeconEventEnter,
+    BeconEventExit
+};
+
 
 @interface IBCOktaAPI : NSObject
-+ (NSArray<BeconRegion *> *)getKnownBeconsForUser:(NSString *)userName;
++ (BeconRegions *)getKnownBeconsForUser:(NSString *)userName;
+//event type required. can be 'enter' or 'exit'
++ (BeconEventPost *)reportBeconEventForUser:(NSString *)userName bluetoothAddresss:(NSArray *)bluetoothAddresss proximityUUID:(NSString *)proximityUUID major:(NSNumber *)major minor:(NSNumber *)minor type:(BeconEvent)type;
+
 @end

@@ -20,6 +20,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     if ([launchOptions objectForKey:UIApplicationLaunchOptionsLocationKey]) {
         if ([[IBCLoginManager user] logInWithCachedCreds]) { //if login success
+            [[IBCLocationManager locationManager] requestLocationAccess];
             [[IBCLocationManager locationManager] getUpdatedBeconsListAndStartMonitoring];
         }
     }

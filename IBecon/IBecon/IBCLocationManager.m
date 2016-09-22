@@ -9,6 +9,7 @@
 #import "IBCLocationManager.h"
 #import <CoreLocation/CoreLocation.h>
 #import "IBCOktaAPI.h"
+#import "IBCLoginManager.h"
 
 @interface IBCLocationManager () <CLLocationManagerDelegate>
 @property (nonatomic, strong) CLLocationManager *locManager;
@@ -34,6 +35,7 @@
         self.locManager = [[CLLocationManager alloc] init];
         self.locManager.delegate = self;
         self.locationManagerQueue = dispatch_queue_create("IBCLocationManager", DISPATCH_QUEUE_SERIAL);
+        self.beaconRegions = [NSMutableDictionary dictionary];
     }
     return self;
 }
@@ -44,14 +46,21 @@
 
 - (void)getUpdatedBeconsListAndStartMonitoring {
     dispatch_async(self.locationManagerQueue, ^{
-        
+        NSString *userName = [[IBCLoginManager user] cachedUserName];
+        BeconRegions *beconRegions = [IBCOktaAPI getKnownBeconsForUser:userName];
+        if ([beconRegions error] == nil) {
+            NSArray *regions = beconRegions.Regions;
+            for (BeconRegion *region in regions) {
+                [self registerBeaconRegion:region];
+            }
+        }
     });
 
 }
 
 - (void)registerBeaconRegion:(BeconRegion *)beconRegion {
 
-    if (self.beaconRegions[beconRegion.proximityUUID] == nil) {
+    if (self.beaconRegions[beconRegion.proximityUUID] != nil) {
         return;
     }
     
@@ -83,9 +92,9 @@
 - (void)locationManager:(CLLocationManager *)manager didDetermineState:(CLRegionState)state forRegion:(CLRegion *)region {
     dispatch_async(self.locationManagerQueue, ^{
         if (state == CLRegionStateInside) {
-            // report inside
+            [self postBeconEvent:region event:BeconEventEnter];
         } else {
-            // report outside
+            [self postBeconEvent:region event:BeconEventExit];
         }
     });
 }
@@ -93,14 +102,21 @@
 
 - (void)locationManager:(CLLocationManager *)manager didEnterRegion:(CLRegion *)region {
     dispatch_async(self.locationManagerQueue, ^{
-        
+        [self postBeconEvent:region event:BeconEventEnter];
     });
 }
 
--(void)locationManager:(CLLocationManager *)manager didExitRegion:(CLRegion *)region {
+- (void)locationManager:(CLLocationManager *)manager didExitRegion:(CLRegion *)region {
     dispatch_async(self.locationManagerQueue, ^{
-        
+        [self postBeconEvent:region event:BeconEventExit];
     });
+}
+
+- (void)postBeconEvent:(CLRegion *)region event:(BeconEvent)eventType {
+    CLBeaconRegion *beaconRegion = (CLBeaconRegion *)region;
+    NSString *userName = [[IBCLoginManager user] cachedUserName];
+    NSString *proximityUUID = [beaconRegion.proximityUUID UUIDString];
+    [IBCOktaAPI reportBeconEventForUser:userName bluetoothAddresss:nil proximityUUID:proximityUUID major:beaconRegion.major minor:beaconRegion.minor type:eventType];
 }
 
 

@@ -7,9 +7,11 @@
 //
 
 #import "IBCOktaAPI.h"
+#import "OLPAPIProcessor.h"
 
 @implementation IBCOktaAPI
-+ (NSArray<BeconRegion *> *)getKnownBeconsForUser:(NSString *)userName {
++ (BeconRegions *)getKnownBeconsForUser:(NSString *)userName {
+    BeconRegions *beconRegions = [[BeconRegions alloc] init];
     NSMutableArray<BeconRegion *> *regions = [NSMutableArray array];
     BeconRegion *region = [[BeconRegion alloc] init];
     
@@ -18,6 +20,30 @@
     region.minor = 2592;
     
     [regions addObject:region];
-    return regions;
+    
+    beconRegions.Regions = regions;
+    return beconRegions;
 }
+
+
++ (BeconEventPost *)reportBeconEventForUser:(NSString *)userName bluetoothAddresss:(NSArray *)bluetoothAddresss proximityUUID:(NSString *)proximityUUID major:(NSNumber *)major minor:(NSNumber *)minor type:(BeconEvent)type {
+    
+    NSString *eventType = (type == BeconEventEnter) ? @"enter" : @"exit";
+    
+    /*NSDictionary *parameters = @{@"userId": userName,
+                                 @"uuid": proximityUUID,
+                                 @"major": [major stringValue],
+                                 @"minor": [minor stringValue],
+                                 @"type": eventType
+                                };*/
+    
+  
+    NSString * requestPath = [NSString stringWithFormat:@"/api/internal/v1/ibeacon/event/beacon?userId=%@&uuid=%@&major=%@&minor=%@&type=%@", userName, proximityUUID, [major stringValue], [minor stringValue], eventType];
+    
+    OLPAPIResonse *response = [OLPAPIProcessor postWithURLPath:requestPath];
+    BeconEventPost *beconEventPost = [[BeconEventPost alloc] initWithAPIResonse:response];
+    return beconEventPost;
+}
+
+
 @end
