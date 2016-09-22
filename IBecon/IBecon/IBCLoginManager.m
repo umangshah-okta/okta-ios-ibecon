@@ -6,7 +6,7 @@
 //  Copyright © 2016 Umang Shah. All rights reserved.
 //
 
-#import "IBCUserManager.h"
+#import "IBCLoginManager.h"
 #import "OktaUtil.h"
 #import "OLPAPIProcessor.h"
 
@@ -15,10 +15,10 @@ static NSString *const userLoggedIn = @"userLoggedIn";
 static NSString *const cachedUserName = @"cachedUserName";
 static NSString *const cachedOrgURL = @"cachedOrgURL";
 
-@implementation IBCUserManager
+@implementation IBCLoginManager
 
-+ (IBCUserManager *)user {
-    static IBCUserManager *ibcUserManager = nil;
++ (IBCLoginManager *)user {
+    static IBCLoginManager *ibcUserManager = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         ibcUserManager = [[self alloc] init];
@@ -34,7 +34,7 @@ static NSString *const cachedOrgURL = @"cachedOrgURL";
 }
 
 
-- (BOOL)loggedInWithCachedCreds {
+- (BOOL)logInWithCachedCreds {
     BOOL isUserLoggedIn = [OktaUtil loadPersistedBoolForKey:userLoggedIn];
     NSString *userName = [OktaUtil loadPersistedValueForKey:cachedUserName];
     NSString *orgURL = [OktaUtil loadPersistedValueForKey:cachedOrgURL];
@@ -61,9 +61,9 @@ static NSString *const cachedOrgURL = @"cachedOrgURL";
 }
 
 - (NSString *)cachedUserName {
-    return nil;
+    return [OktaUtil loadPersistedValueForKey:cachedUserName];
 }
-- (NSURL *)cachedOrgURL {
-    return nil;
+- (NSString *)cachedOrgURL {
+    return [OktaUtil loadPersistedValueForKey:cachedOrgURL];
 }
 @end

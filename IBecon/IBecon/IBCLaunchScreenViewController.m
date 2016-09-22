@@ -7,7 +7,7 @@
 //
 
 #import "IBCLaunchScreenViewController.h"
-#import "IBCUserManager.h"
+#import "IBCLoginManager.h"
 
 @interface IBCLaunchScreenViewController ()
 
@@ -26,7 +26,7 @@
 }
 
 - (void)viewDidAppear:(BOOL)animated {
-    if (YES || [[IBCUserManager user] loggedInWithCachedCreds]) {
+    if ([[IBCLoginManager user] logInWithCachedCreds]) {
         [self performSegueWithIdentifier:@"loginSucess" sender:self];
     } else {
         [self performSegueWithIdentifier:@"loginUser" sender:self];
@@ -39,8 +39,8 @@
 
 
 - (IBAction)unwindMDMConfigModalViewControllers:(UIStoryboardSegue *)segue {
-    if ([segue.identifier isEqual:@"unwindFromUserAgreement"]) {
-        
+    if ([segue.identifier isEqual:@"logout"]) {
+        [self dismissViewControllerAnimated:YES completion:nil];
     }
 }
 

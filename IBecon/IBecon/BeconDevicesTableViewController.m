@@ -7,7 +7,8 @@
 //
 
 #import "BeconDevicesTableViewController.h"
-#import "IBCUserManager.h"
+#import "IBCLoginManager.h"
+#import "IBCLocationManager.h"
 
 @interface BeconDevicesTableViewController ()
 
@@ -17,6 +18,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [[IBCLocationManager locationManager] registerBeaconRegionWithUUID:@"2B162531-FD29-4758-85B4-555A6DFF00FF" andIdentifier:@"com.okta.hack"];
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -34,7 +36,8 @@
     [self.navigationController setNavigationBarHidden:NO animated:animated];
 }
 - (IBAction)logOut:(id)sender {
-    [[IBCUserManager user] logOutUser];
+    [[IBCLoginManager user] logOutUser];
+    [self performSegueWithIdentifier:@"logout" sender:self];
     
 }
 

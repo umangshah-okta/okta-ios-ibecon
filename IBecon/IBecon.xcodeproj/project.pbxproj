@@ -7,15 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		910E49EC1D93424500DC6F07 /* IBCUserManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 910E49EB1D93424500DC6F07 /* IBCUserManager.m */; };
 		910E49EF1D934E6000DC6F07 /* OLPLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 910E49EE1D934E6000DC6F07 /* OLPLoginViewController.m */; };
 		910E49F21D934F6700DC6F07 /* OLPWindowOverlay.m in Sources */ = {isa = PBXBuildFile; fileRef = 910E49F11D934F6700DC6F07 /* OLPWindowOverlay.m */; };
 		910E49F51D934FFF00DC6F07 /* OLPUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 910E49F41D934FFF00DC6F07 /* OLPUtils.m */; };
 		910E49F81D93502D00DC6F07 /* OLPConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 910E49F71D93502D00DC6F07 /* OLPConstants.m */; };
 		910E49FB1D93710000DC6F07 /* BeconDevicesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 910E49FA1D93710000DC6F07 /* BeconDevicesTableViewController.m */; };
+		910E49FC1D93A89900DC6F07 /* IBCLoginManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 910E49EB1D93424500DC6F07 /* IBCLoginManager.m */; };
 		9130E4811D93047100E10142 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9130E4801D93047100E10142 /* main.m */; };
 		9130E4841D93047100E10142 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9130E4831D93047100E10142 /* AppDelegate.m */; };
-		9130E4871D93047100E10142 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9130E4861D93047100E10142 /* ViewController.m */; };
 		9130E48A1D93047100E10142 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9130E4881D93047100E10142 /* Main.storyboard */; };
 		9130E48C1D93047100E10142 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9130E48B1D93047100E10142 /* Assets.xcassets */; };
 		9130E48F1D93047100E10142 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9130E48D1D93047100E10142 /* LaunchScreen.storyboard */; };
@@ -48,8 +47,8 @@
 /* Begin PBXFileReference section */
 		3E0E2DA20C5A62E087871E7B /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		6C7552C0327DE2E28EE21250 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		910E49EA1D93424500DC6F07 /* IBCUserManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IBCUserManager.h; sourceTree = "<group>"; };
-		910E49EB1D93424500DC6F07 /* IBCUserManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IBCUserManager.m; sourceTree = "<group>"; };
+		910E49EA1D93424500DC6F07 /* IBCLoginManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IBCLoginManager.h; sourceTree = "<group>"; };
+		910E49EB1D93424500DC6F07 /* IBCLoginManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IBCLoginManager.m; sourceTree = "<group>"; };
 		910E49ED1D934E6000DC6F07 /* OLPLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OLPLoginViewController.h; sourceTree = "<group>"; };
 		910E49EE1D934E6000DC6F07 /* OLPLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OLPLoginViewController.m; sourceTree = "<group>"; };
 		910E49F01D934F6700DC6F07 /* OLPWindowOverlay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OLPWindowOverlay.h; sourceTree = "<group>"; };
@@ -64,8 +63,6 @@
 		9130E4801D93047100E10142 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		9130E4821D93047100E10142 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		9130E4831D93047100E10142 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		9130E4851D93047100E10142 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		9130E4861D93047100E10142 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		9130E4891D93047100E10142 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		9130E48B1D93047100E10142 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9130E48E1D93047100E10142 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -121,13 +118,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		910E49E91D93422000DC6F07 /* User */ = {
+		910E49E91D93422000DC6F07 /* Service */ = {
 			isa = PBXGroup;
 			children = (
-				910E49EA1D93424500DC6F07 /* IBCUserManager.h */,
-				910E49EB1D93424500DC6F07 /* IBCUserManager.m */,
+				910E49EA1D93424500DC6F07 /* IBCLoginManager.h */,
+				910E49EB1D93424500DC6F07 /* IBCLoginManager.m */,
+				9130E4B21D93081800E10142 /* IBCLocationManager.h */,
+				9130E4B31D93081800E10142 /* IBCLocationManager.m */,
 			);
-			name = User;
+			name = Service;
 			sourceTree = "<group>";
 		};
 		9130E4731D93047100E10142 = {
@@ -155,15 +154,11 @@
 		9130E47E1D93047100E10142 /* IBecon */ = {
 			isa = PBXGroup;
 			children = (
-				910E49E91D93422000DC6F07 /* User */,
+				910E49E91D93422000DC6F07 /* Service */,
 				914CEDB51D93358300362A74 /* Network */,
 				914CEDB41D93323200362A74 /* UX */,
 				9130E4821D93047100E10142 /* AppDelegate.h */,
 				9130E4831D93047100E10142 /* AppDelegate.m */,
-				9130E4851D93047100E10142 /* ViewController.h */,
-				9130E4861D93047100E10142 /* ViewController.m */,
-				9130E4B21D93081800E10142 /* IBCLocationManager.h */,
-				9130E4B31D93081800E10142 /* IBCLocationManager.m */,
 				9130E4881D93047100E10142 /* Main.storyboard */,
 				9130E48B1D93047100E10142 /* Assets.xcassets */,
 				9130E48D1D93047100E10142 /* LaunchScreen.storyboard */,
@@ -425,10 +420,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9130E4871D93047100E10142 /* ViewController.m in Sources */,
+				910E49FC1D93A89900DC6F07 /* IBCLoginManager.m in Sources */,
 				914CEDBA1D9336CB00362A74 /* OLPAPIProcessor.m in Sources */,
 				9130E4B41D93081800E10142 /* IBCLocationManager.m in Sources */,
-				910E49EC1D93424500DC6F07 /* IBCUserManager.m in Sources */,
 				910E49EF1D934E6000DC6F07 /* OLPLoginViewController.m in Sources */,
 				9130E4841D93047100E10142 /* AppDelegate.m in Sources */,
 				9130E4811D93047100E10142 /* main.m in Sources */,

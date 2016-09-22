@@ -8,11 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
-@interface IBCUserManager : NSObject
-+ (IBCUserManager *)user;
-- (BOOL)loggedInWithCachedCreds;
+@interface IBCLoginManager : NSObject
++ (IBCLoginManager *)user;
+- (BOOL)logInWithCachedCreds;
 - (BOOL)loginWithUserName:(NSString *)userName andOrgURL:(NSString *)orgURL;
 - (void)logOutUser;
 - (NSString *)cachedUserName;
-- (NSURL *)cachedOrgURL;
+- (NSString *)cachedOrgURL;
 @end

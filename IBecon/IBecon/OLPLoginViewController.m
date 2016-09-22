@@ -12,7 +12,9 @@
 #import "OLPConstants.h"
 #import "UIImageView+AFNetworking.h"
 #import "OLPWindowOverlay.h"
-#import "IBCUserManager.h"
+#import "IBCLoginManager.h"
+#import "IBCLocationManager.h"
+
 
 static NSString *const OLP_LOGO_URI_FMT = @"/api/v1/mobile/org/logo";
 
@@ -86,6 +88,18 @@ static NSString *const OLP_LOGO_URI_FMT = @"/api/v1/mobile/org/logo";
     
     self.justClickedSignIn = NO;
     
+    NSString *cachedUserName = [[IBCLoginManager user] cachedUserName];
+    if (cachedUserName != nil) {
+       self.username.text = cachedUserName;
+    }
+    
+    NSString *cachedOrgURL = [[IBCLoginManager user] cachedOrgURL];
+    if (cachedUserName != nil) {
+        self.domain.text = cachedOrgURL;
+    }
+    
+    [[IBCLocationManager locationManager] requestLocationAccess];
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -147,7 +161,7 @@ static NSString *const OLP_LOGO_URI_FMT = @"/api/v1/mobile/org/logo";
 #pragma mark - Actions
 
 - (IBAction)signInButtonClicked:(id)sender {
-    if ([[IBCUserManager user] loginWithUserName:self.username.text andOrgURL:self.domain.text]) {
+    if ([[IBCLoginManager user] loginWithUserName:self.username.text andOrgURL:self.domain.text]) {
         [self performSegueWithIdentifier:@"loginSucess" sender:self];
     } else {
         [self showSignInFailed];

@@ -48,8 +48,8 @@
     // Create the beacon region to be monitored.
     self.beaconRegion = [[CLBeaconRegion alloc]
                                     initWithProximityUUID:proximityUUID
-                                    major:1000
-                                    minor:1000
+                                    major:54687
+                                    minor:2592
                                     identifier:identifier];
     
     // Register the beacon region with the location manager.
@@ -65,7 +65,7 @@
     if (state == CLRegionStateInside)
     {
         //Start Ranging
-        [manager startRangingBeaconsInRegion:self.beaconRegion];
+        //[manager startRangingBeaconsInRegion:self.beaconRegion];
     }
     else
     {
