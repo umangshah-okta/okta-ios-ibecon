@@ -18,6 +18,7 @@
 		910E4A071D93B74800DC6F07 /* BeconRegion.m in Sources */ = {isa = PBXBuildFile; fileRef = 910E4A061D93B74800DC6F07 /* BeconRegion.m */; };
 		910E4A0A1D93B77A00DC6F07 /* OLPModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 910E4A091D93B77A00DC6F07 /* OLPModel.m */; };
 		910E4A0D1D943CDB00DC6F07 /* BeconEventPost.m in Sources */ = {isa = PBXBuildFile; fileRef = 910E4A0C1D943CDB00DC6F07 /* BeconEventPost.m */; };
+		910E4A101D945A7500DC6F07 /* BeconTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 910E4A0F1D945A7500DC6F07 /* BeconTableViewCell.m */; };
 		9130E4811D93047100E10142 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9130E4801D93047100E10142 /* main.m */; };
 		9130E4841D93047100E10142 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9130E4831D93047100E10142 /* AppDelegate.m */; };
 		9130E48A1D93047100E10142 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9130E4881D93047100E10142 /* Main.storyboard */; };
@@ -74,6 +75,8 @@
 		910E4A091D93B77A00DC6F07 /* OLPModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OLPModel.m; sourceTree = "<group>"; };
 		910E4A0B1D943CDB00DC6F07 /* BeconEventPost.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeconEventPost.h; sourceTree = "<group>"; };
 		910E4A0C1D943CDB00DC6F07 /* BeconEventPost.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BeconEventPost.m; sourceTree = "<group>"; };
+		910E4A0E1D945A7500DC6F07 /* BeconTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeconTableViewCell.h; sourceTree = "<group>"; };
+		910E4A0F1D945A7500DC6F07 /* BeconTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BeconTableViewCell.m; sourceTree = "<group>"; };
 		9130E47C1D93047100E10142 /* IBecon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IBecon.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9130E4801D93047100E10142 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		9130E4821D93047100E10142 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -168,6 +171,17 @@
 			name = Model;
 			sourceTree = "<group>";
 		};
+		910E4A111D945A7E00DC6F07 /* Becon List UX */ = {
+			isa = PBXGroup;
+			children = (
+				910E4A0E1D945A7500DC6F07 /* BeconTableViewCell.h */,
+				910E4A0F1D945A7500DC6F07 /* BeconTableViewCell.m */,
+				910E49F91D93710000DC6F07 /* BeconDevicesTableViewController.h */,
+				910E49FA1D93710000DC6F07 /* BeconDevicesTableViewController.m */,
+			);
+			name = "Becon List UX";
+			sourceTree = "<group>";
+		};
 		9130E4731D93047100E10142 = {
 			isa = PBXGroup;
 			children = (
@@ -236,6 +250,7 @@
 		914CEDB41D93323200362A74 /* UX */ = {
 			isa = PBXGroup;
 			children = (
+				910E4A111D945A7E00DC6F07 /* Becon List UX */,
 				910E49F61D93502D00DC6F07 /* OLPConstants.h */,
 				910E49F71D93502D00DC6F07 /* OLPConstants.m */,
 				910E49F31D934FFF00DC6F07 /* OLPUtils.h */,
@@ -246,8 +261,6 @@
 				910E49EE1D934E6000DC6F07 /* OLPLoginViewController.m */,
 				914CEDB11D93322700362A74 /* IBCLaunchScreenViewController.h */,
 				914CEDB21D93322700362A74 /* IBCLaunchScreenViewController.m */,
-				910E49F91D93710000DC6F07 /* BeconDevicesTableViewController.h */,
-				910E49FA1D93710000DC6F07 /* BeconDevicesTableViewController.m */,
 			);
 			name = UX;
 			sourceTree = "<group>";
@@ -472,6 +485,7 @@
 				910E49FB1D93710000DC6F07 /* BeconDevicesTableViewController.m in Sources */,
 				910E4A071D93B74800DC6F07 /* BeconRegion.m in Sources */,
 				914CEDBB1D9336CB00362A74 /* OLPAPIResonse.m in Sources */,
+				910E4A101D945A7500DC6F07 /* BeconTableViewCell.m in Sources */,
 				910E49F21D934F6700DC6F07 /* OLPWindowOverlay.m in Sources */,
 				910E49F81D93502D00DC6F07 /* OLPConstants.m in Sources */,
 				910E4A001D93B62200DC6F07 /* IBCOktaAPI.m in Sources */,

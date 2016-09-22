@@ -11,18 +11,24 @@
 
 @implementation IBCOktaAPI
 + (BeconRegions *)getKnownBeconsForUser:(NSString *)userName {
-    BeconRegions *beconRegions = [[BeconRegions alloc] init];
+    
+    OLPAPIResonse *response = [OLPAPIProcessor getWithURLPath:@"/api/internal/v1/ibeacon/info"];
+    BeconRegions *beconRegions = [[BeconRegions alloc] initWithAPIResonse:response];
+    return beconRegions;
+    
+    
+    /*BeconRegions *beconRegions = [[BeconRegions alloc] init];
     NSMutableArray<BeconRegion *> *regions = [NSMutableArray array];
     BeconRegion *region = [[BeconRegion alloc] init];
     
     region.proximityUUID = @"2B162531-FD29-4758-85B4-555A6DFF00FF";
-    region.major = 54687;
-    region.minor = 2592;
+    region.major = @(54687);
+    region.minor = @(2592);
     
     [regions addObject:region];
     
     beconRegions.Regions = regions;
-    return beconRegions;
+    return beconRegions;*/
 }
 
 

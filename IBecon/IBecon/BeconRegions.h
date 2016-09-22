@@ -11,5 +11,5 @@
 #import "BeconRegion.h"
 
 @interface BeconRegions : OLPModel
-@property (nonatomic, strong) NSArray<BeconRegion *> *Regions;
+@property (nonatomic, strong) NSArray<BeconRegion *> *regions;
 @end

@@ -12,13 +12,27 @@
 - (instancetype)initWithAPIResonse:(OLPAPIResonse *)apiResponse {
     self = [super initWithAPIResonse:apiResponse];
     if (self) {
-        //self.apiToken = apiResponse.results[@"api_token"];
-        //self.sessionId = apiResponse.results[@"session"];
+        NSMutableArray<BeconRegion *> *regions = [NSMutableArray array];
+        if (self.error == nil) {
+            for (NSDictionary *regionDict in apiResponse.results[@"beacons"]) {
+                BeconRegion *region = [[BeconRegion alloc] initWithAPIResonse:regionDict];
+                if (region.error == nil) {
+                    [regions addObject:region];
+                } else {
+                    self.error = region.error;
+                }
+            }
+            self.regions = regions;
+        }
     }
     return self;
 }
 
 - (BOOL)validate:(NSDictionary *)apiResponse {
-    return YES;
+    if (apiResponse[@"beacons"] != nil) {
+        return [apiResponse[@"beacons"] isKindOfClass:[NSArray class]];
+    }
+    
+    return NO;
 }
 @end

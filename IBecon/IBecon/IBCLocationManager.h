@@ -12,4 +12,6 @@
 + (IBCLocationManager *)locationManager;
 - (void)requestLocationAccess;
 - (void)getUpdatedBeconsListAndStartMonitoring;
+- (void)stopMonitoringAllBecons;
 @end
+

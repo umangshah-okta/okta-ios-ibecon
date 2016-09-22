@@ -49,13 +49,24 @@
         NSString *userName = [[IBCLoginManager user] cachedUserName];
         BeconRegions *beconRegions = [IBCOktaAPI getKnownBeconsForUser:userName];
         if ([beconRegions error] == nil) {
-            NSArray *regions = beconRegions.Regions;
+            NSArray *regions = beconRegions.regions;
             for (BeconRegion *region in regions) {
                 [self registerBeaconRegion:region];
             }
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"BeconsUpdated" object:regions];
         }
     });
 
+}
+
+- (void)stopMonitoringAllBecons {
+    dispatch_async(self.locationManagerQueue, ^{
+        NSArray <CLBeaconRegion *> *beaconRegions = [self.beaconRegions allValues];
+        for (CLBeaconRegion *region in beaconRegions) {
+            [self unRegisterBeaconRegion:region];
+        }
+        [self.beaconRegions removeAllObjects];
+    });
 }
 
 - (void)registerBeaconRegion:(BeconRegion *)beconRegion {
@@ -71,13 +82,17 @@
     // Create the beacon region to be monitored.
     CLBeaconRegion *beaconRegion = [[CLBeaconRegion alloc]
                                     initWithProximityUUID:proximityUUID
-                                    major:beconRegion.major
-                                    minor:beconRegion.minor
+                                    major:[beconRegion.major intValue]
+                                    minor:[beconRegion.minor intValue]
                                     identifier:beconRegion.proximityUUID];
     
     // Register the beacon region with the location manager.
     [self.locManager startMonitoringForRegion:beaconRegion];
     self.beaconRegions[beconRegion.proximityUUID] = beaconRegion;
+}
+
+- (void)unRegisterBeaconRegion:(CLBeaconRegion *)beconRegion {
+    [self.locManager stopMonitoringForRegion:beconRegion];
 }
 
 
@@ -116,6 +131,10 @@
     CLBeaconRegion *beaconRegion = (CLBeaconRegion *)region;
     NSString *userName = [[IBCLoginManager user] cachedUserName];
     NSString *proximityUUID = [beaconRegion.proximityUUID UUIDString];
+    NSString *eventTypeString = (eventType == BeconEventEnter) ? @"enter" : @"exit";
+
+    NSLog(@"YYYYYYYYYYYYYYYYYPosting becon event for user:%@, proximityUUID:%@, eventType: %@", userName, proximityUUID, eventTypeString);
+    
     [IBCOktaAPI reportBeconEventForUser:userName bluetoothAddresss:nil proximityUUID:proximityUUID major:beaconRegion.major minor:beaconRegion.minor type:eventType];
 }
 

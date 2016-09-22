@@ -9,6 +9,7 @@
 #import "IBCLoginManager.h"
 #import "OktaUtil.h"
 #import "OLPAPIProcessor.h"
+#import "IBCLocationManager.h"
 
 
 static NSString *const userLoggedIn = @"userLoggedIn";
@@ -57,6 +58,7 @@ static NSString *const cachedOrgURL = @"cachedOrgURL";
 }
 
 - (void)logOutUser {
+    [[IBCLocationManager locationManager] stopMonitoringAllBecons];
     [OktaUtil persistKey:userLoggedIn withBool:NO];
 }
 
