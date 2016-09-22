@@ -12,12 +12,12 @@
 @implementation IBCOktaAPI
 + (BeconRegions *)getKnownBeconsForUser:(NSString *)userName {
     
-    OLPAPIResonse *response = [OLPAPIProcessor getWithURLPath:@"/api/internal/v1/ibeacon/info"];
+    /*OLPAPIResonse *response = [OLPAPIProcessor getWithURLPath:@"/api/internal/v1/ibeacon/info"];
     BeconRegions *beconRegions = [[BeconRegions alloc] initWithAPIResonse:response];
-    return beconRegions;
+    return beconRegions;*/
     
     
-    /*BeconRegions *beconRegions = [[BeconRegions alloc] init];
+    BeconRegions *beconRegions = [[BeconRegions alloc] init];
     NSMutableArray<BeconRegion *> *regions = [NSMutableArray array];
     BeconRegion *region = [[BeconRegion alloc] init];
     
@@ -27,23 +27,14 @@
     
     [regions addObject:region];
     
-    beconRegions.Regions = regions;
-    return beconRegions;*/
+    beconRegions.regions = regions;
+    return beconRegions;
 }
 
 
 + (BeconEventPost *)reportBeconEventForUser:(NSString *)userName bluetoothAddresss:(NSArray *)bluetoothAddresss proximityUUID:(NSString *)proximityUUID major:(NSNumber *)major minor:(NSNumber *)minor type:(BeconEvent)type {
     
     NSString *eventType = (type == BeconEventEnter) ? @"enter" : @"exit";
-    
-    /*NSDictionary *parameters = @{@"userId": userName,
-                                 @"uuid": proximityUUID,
-                                 @"major": [major stringValue],
-                                 @"minor": [minor stringValue],
-                                 @"type": eventType
-                                };*/
-    
-  
     NSString * requestPath = [NSString stringWithFormat:@"/api/internal/v1/ibeacon/event/beacon?userId=%@&uuid=%@&major=%@&minor=%@&type=%@", userName, proximityUUID, [major stringValue], [minor stringValue], eventType];
     
     OLPAPIResonse *response = [OLPAPIProcessor postWithURLPath:requestPath];

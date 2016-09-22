@@ -46,6 +46,7 @@
 
 - (void)getUpdatedBeconsListAndStartMonitoring {
     dispatch_async(self.locationManagerQueue, ^{
+        NSLog(@"YYYYYWaking getUpdatedBeconsListAndStartMonitoring");
         NSString *userName = [[IBCLoginManager user] cachedUserName];
         BeconRegions *beconRegions = [IBCOktaAPI getKnownBeconsForUser:userName];
         if ([beconRegions error] == nil) {

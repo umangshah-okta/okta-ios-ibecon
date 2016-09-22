@@ -19,7 +19,9 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     if ([launchOptions objectForKey:UIApplicationLaunchOptionsLocationKey]) {
+        NSLog(@"XXXXXXWaking for location service");
         if ([[IBCLoginManager user] logInWithCachedCreds]) { //if login success
+            NSLog(@"XXXXXXWaking logged");
             [[IBCLocationManager locationManager] requestLocationAccess];
             [[IBCLocationManager locationManager] getUpdatedBeconsListAndStartMonitoring];
         }
