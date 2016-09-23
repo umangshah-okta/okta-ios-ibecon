@@ -9,12 +9,15 @@
 #import "AppDelegate.h"
 #import "IBCLocationManager.h"
 #import "IBCLoginManager.h"
+#import <UserNotifications/UserNotifications.h>
 
 @interface AppDelegate ()
 
 @end
 
 @implementation AppDelegate
+
+
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
@@ -26,6 +29,7 @@
             [[IBCLocationManager locationManager] getUpdatedBeconsListAndStartMonitoring];
         }
     }
+    [application registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert|UIUserNotificationTypeBadge|UIUserNotificationTypeSound categories:nil]];
     return YES;
 }
 

@@ -16,8 +16,8 @@
     BeconRegions *beconRegions = [[BeconRegions alloc] initWithAPIResonse:response];
     return beconRegions;
     
-    
-    /*BeconRegions *beconRegions = [[BeconRegions alloc] init];
+    /*
+    BeconRegions *beconRegions = [[BeconRegions alloc] init];
     NSMutableArray<BeconRegion *> *regions = [NSMutableArray array];
     BeconRegion *region = [[BeconRegion alloc] init];
     
@@ -25,20 +25,10 @@
     region.major = @(54687);
     region.minor = @(2592);
     region.location = @"War room";
-    [regions addObject:region];*/
-    
-    /*BeconRegions *beconRegions = [[BeconRegions alloc] init];
-    NSMutableArray<BeconRegion *> *regions = [NSMutableArray array];
-    BeconRegion *region = [[BeconRegion alloc] init];
-    
-    region.proximityUUID = @"74278BDA-B644-4520-8F0C-720EAF059935";
-    region.major = @(10001);
-    region.minor = @(19641);
-    region.location = @"War room2";
-    [regions addObject:region];*/
-     
-    /*beconRegions.regions = regions;
+    [regions addObject:region];
+    beconRegions.regions = regions;
     return beconRegions;*/
+    
 }
 
 

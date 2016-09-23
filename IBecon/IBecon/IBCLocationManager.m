@@ -10,6 +10,7 @@
 #import <CoreLocation/CoreLocation.h>
 #import "IBCOktaAPI.h"
 #import "IBCLoginManager.h"
+#import <UIKit/UIKit.h>
 
 @interface IBCLocationManager () <CLLocationManagerDelegate>
 @property (nonatomic, strong) CLLocationManager *locManager;
@@ -135,7 +136,17 @@
     NSString *proximityUUID = [beaconRegion.proximityUUID UUIDString];
     NSString *eventTypeString = (eventType == BeconEventEnter) ? @"enter" : @"exit";
 
-    NSLog(@"YYYYYYYYYYYYYYYYYPosting becon event for user:%@, proximityUUID:%@, eventType: %@, major:%@, minor:%@", userName, proximityUUID, eventTypeString, beaconRegion.major, beaconRegion.minor);
+    NSLog(@"YYYYYYYYYYYYYYYYYPosting becon event for user:%@, proximityUUID:%@, eventType: %@, major:%@, minor:%@, location:%@", userName, proximityUUID, eventTypeString, beaconRegion.major, beaconRegion.minor, beaconRegion.identifier);
+    
+    
+    
+    
+    UILocalNotification* localNotification = [[UILocalNotification alloc] init];
+    localNotification.fireDate = [NSDate dateWithTimeIntervalSinceNow:0];
+    localNotification.alertBody = [NSString stringWithFormat:@"%@ed: %@", eventTypeString, beaconRegion.identifier];
+    localNotification.timeZone = [NSTimeZone defaultTimeZone];
+    [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
+    
     
     [IBCOktaAPI reportBeconEventForUser:userName bluetoothAddresss:nil proximityUUID:proximityUUID major:beaconRegion.major minor:beaconRegion.minor type:eventType];
 }
